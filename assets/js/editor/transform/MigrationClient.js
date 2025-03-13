@@ -40,14 +40,16 @@ class MigrationClient {
 		const { select } = wp.data;
 		const isSavingPost = select('core/editor').isSavingPost();
 		const isAutosavingPost = select('core/editor').isAutosavingPost();
-
+	
 		if (isAutosavingPost && !isSavingPost) {
 			return;
 		}
-
-		if (this.hasNext()) {
-			this.next();
-		}
+	
+		setTimeout(() => {
+			if (this.hasNext()) {
+				this.next();
+			}
+		}, 5000);
 	}
 
 	/**
